@@ -1,18 +1,18 @@
 /* Global Styles */
 :root {
     --primary-color: #C62828; /* Red */
-    --primary-light: #000000; /* Black */
-    --secondary-color: #212121; /* Dark Gray for contrast */
-    --background-color: #F9F9F9; /* Light Gray for subtle contrast */
+    --primary-dark: #000000; /* Black */
+    --secondary-color: #212121; /* Dark Gray */
+    --background-color: #F9F9F9; /* Light Gray */
     --text-color: #333333; /* Dark Text Color */
     --header-font-weight: 700;
     --section-bg-color: #FFFFFF; /* White */
-    --shadow-color: rgba(0, 0, 0, 0.1);
-    --border-radius: 10px;
+    --shadow-color: rgba(0, 0, 0, 0.2);
+    --border-radius: 8px;
     --transition-speed: 0.3s;
     --font-base-size: 16px;
     --font-heading-size: 24px;
-    --hover-scale: 1.03; /* Scale on hover */
+    --hover-scale: 1.05; /* Scale on hover */
     --focus-outline-color: #FFCDD2; /* Soft red outline for accessibility */
 }
 
@@ -23,34 +23,38 @@
     box-sizing: border-box;
 }
 
+/* Smooth Scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
 /* Body */
 body {
     font-family: 'Nunito', sans-serif;
-    line-height: 1.7;
+    line-height: 1.6;
     background-color: var(--background-color);
     color: var(--text-color);
-    scroll-behavior: smooth;
     font-size: var(--font-base-size);
 }
 
 /* Header */
 header {
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
     color: #ffffff;
-    padding: 30px 0;
+    padding: 40px 0;
     text-align: center;
-    box-shadow: 0 4px 12px var(--shadow-color);
-    position: relative;
+    box-shadow: 0 4px 16px var(--shadow-color);
     border-radius: 0 0 var(--border-radius) var(--border-radius);
+    position: relative;
 }
 
 header::after {
     content: '';
     position: absolute;
-    bottom: -2px;
+    bottom: -5px;
     left: 50%;
-    width: 100px;
-    height: 4px;
+    width: 80px;
+    height: 5px;
     background: #ffffff;
     transform: translateX(-50%);
     border-radius: 2px;
@@ -59,19 +63,20 @@ header::after {
 /* Header Title */
 header h1 {
     font-weight: var(--header-font-weight);
-    font-size: 2.8em;
+    font-size: 2.5em;
     letter-spacing: 1px;
+    margin: 0;
     transition: color var(--transition-speed), text-shadow var(--transition-speed);
 }
 
 header h1:hover {
     color: #ffffff;
-    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
 }
 
 /* Navigation */
 nav {
-    background-color: var(--primary-light);
+    background-color: var(--primary-dark);
     border-bottom: 2px solid var(--primary-color);
 }
 
@@ -84,14 +89,14 @@ nav ul {
 }
 
 nav ul li {
-    margin: 0 20px;
+    margin: 0 15px;
 }
 
 nav ul li a {
     color: #ffffff;
     text-decoration: none;
     font-weight: 600;
-    padding: 12px 20px;
+    padding: 10px 15px;
     display: block;
     border-radius: var(--border-radius);
     transition: background-color var(--transition-speed), transform var(--transition-speed);
@@ -107,7 +112,7 @@ nav ul li a:focus {
 
 /* Main Content */
 main {
-    max-width: 1100px;
+    max-width: 1200px;
     margin: 30px auto;
     padding: 0 20px;
     display: flex;
@@ -115,40 +120,40 @@ main {
     gap: 30px;
 }
 
-/* Grid Layout for Sections */
+/* Sections */
 section {
     background-color: var(--section-bg-color);
-    padding: 25px;
+    padding: 20px;
     border-radius: var(--border-radius);
-    box-shadow: 0 4px 12px var(--shadow-color);
+    box-shadow: 0 6px 20px var(--shadow-color);
     transition: box-shadow var(--transition-speed), transform var(--transition-speed);
     display: grid;
-    grid-template-columns: 1fr;
     gap: 20px;
 }
 
 section:hover {
-    box-shadow: 0 8px 20px var(--shadow-color);
+    box-shadow: 0 8px 24px var(--shadow-color);
     transform: translateY(-5px);
 }
 
 section h2 {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     color: var(--primary-color);
     font-weight: var(--header-font-weight);
-    font-size: 2.2em;
-    border-bottom: 3px solid var(--primary-color);
+    font-size: 2em;
+    border-bottom: 2px solid var(--primary-color);
     padding-bottom: 10px;
+    line-height: 1.4;
 }
 
 /* Lists */
 section ul {
     list-style: none;
-    padding-left: 20px; /* Indentation for better readability */
+    padding-left: 0;
 }
 
 section ul li {
-    margin-bottom: 15px;
+    margin-bottom: 12px;
 }
 
 section ul li a {
@@ -163,33 +168,33 @@ section ul li a {
 
 section ul li a::before {
     content: '→';
-    margin-right: 12px;
+    margin-right: 10px;
     color: var(--primary-color);
-    font-size: 1.5em;
+    font-size: 1.4em;
     transition: transform var(--transition-speed);
 }
 
 section ul li a:hover::before,
 section ul li a:focus::before {
-    transform: translateX(8px);
+    transform: translateX(6px);
 }
 
 section ul li a:hover,
 section ul li a:focus {
     color: var(--primary-color);
-    transform: translateX(5px);
+    transform: translateX(3px);
     outline: 2px dashed var(--focus-outline-color);
     outline-offset: 4px;
 }
 
 /* Footer */
 footer {
-    background-color: var(--primary-light);
+    background-color: var(--primary-dark);
     color: #ffffff;
     text-align: center;
-    padding: 25px 0;
+    padding: 20px 0;
     margin-top: 30px;
-    border-top: 3px solid var(--primary-color);
+    border-top: 2px solid var(--primary-color);
     box-shadow: 0 -2px 6px var(--shadow-color);
     border-radius: var(--border-radius) var(--border-radius) 0 0;
 }
@@ -197,11 +202,11 @@ footer {
 /* Responsive Design */
 @media (max-width: 1024px) {
     header h1 {
-        font-size: 2.4em;
+        font-size: 2.2em;
     }
 
     nav ul li {
-        margin: 0 15px;
+        margin: 0 10px;
     }
 }
 
@@ -211,7 +216,7 @@ footer {
     }
 
     nav ul li {
-        margin: 10px 0;
+        margin: 8px 0;
     }
 
     main {
@@ -225,10 +230,10 @@ footer {
 
 @media (max-width: 480px) {
     header h1 {
-        font-size: 1.8em;
+        font-size: 1.6em;
     }
 
     section {
-        padding: 20px;
+        padding: 15px;
     }
 }
