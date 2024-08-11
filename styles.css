@@ -3,15 +3,17 @@
     --primary-color: #C62828; /* Red */
     --primary-light: #000000; /* Black */
     --secondary-color: #212121; /* Dark Gray for contrast */
-    --background-color: #F5F5F5; /* Light Gray */
-    --text-color: #333; /* Dark Text Color */
+    --background-color: #F9F9F9; /* Light Gray for subtle contrast */
+    --text-color: #333333; /* Dark Text Color */
     --header-font-weight: 700;
     --section-bg-color: #FFFFFF; /* White */
     --shadow-color: rgba(0, 0, 0, 0.1);
-    --border-radius: 8px;
+    --border-radius: 10px;
     --transition-speed: 0.3s;
     --font-base-size: 16px;
     --font-heading-size: 24px;
+    --hover-scale: 1.03; /* Scale on hover */
+    --focus-outline-color: #FFCDD2; /* Soft red outline for accessibility */
 }
 
 /* Global Reset */
@@ -24,7 +26,7 @@
 /* Body */
 body {
     font-family: 'Nunito', sans-serif;
-    line-height: 1.6;
+    line-height: 1.7;
     background-color: var(--background-color);
     color: var(--text-color);
     scroll-behavior: smooth;
@@ -34,47 +36,51 @@ body {
 /* Header */
 header {
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
-    color: #fff;
-    padding: 20px 0;
+    color: #ffffff;
+    padding: 30px 0;
     text-align: center;
-    box-shadow: 0 4px 8px var(--shadow-color);
+    box-shadow: 0 4px 12px var(--shadow-color);
     position: relative;
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
 }
 
 header::after {
     content: '';
     position: absolute;
-    bottom: 0;
+    bottom: -2px;
     left: 50%;
-    width: 120px;
+    width: 100px;
     height: 4px;
-    background: #fff;
+    background: #ffffff;
     transform: translateX(-50%);
+    border-radius: 2px;
 }
 
 /* Header Title */
 header h1 {
     font-weight: var(--header-font-weight);
-    font-size: 2.5em;
+    font-size: 2.8em;
     letter-spacing: 1px;
     transition: color var(--transition-speed), text-shadow var(--transition-speed);
 }
 
 header h1:hover {
-    color: #fff;
-    text-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+    color: #ffffff;
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 /* Navigation */
 nav {
     background-color: var(--primary-light);
+    border-bottom: 2px solid var(--primary-color);
 }
 
 nav ul {
     display: flex;
     justify-content: center;
     list-style: none;
-    padding: 0;
+    padding: 10px 0;
+    margin: 0;
 }
 
 nav ul li {
@@ -82,38 +88,39 @@ nav ul li {
 }
 
 nav ul li a {
-    color: #fff;
+    color: #ffffff;
     text-decoration: none;
     font-weight: 600;
-    padding: 15px 20px;
+    padding: 12px 20px;
     display: block;
     border-radius: var(--border-radius);
-    transition: color var(--transition-speed), background-color var(--transition-speed), transform var(--transition-speed);
+    transition: background-color var(--transition-speed), transform var(--transition-speed);
 }
 
 nav ul li a:hover,
 nav ul li a:focus {
-    color: var(--primary-color);
-    background-color: rgba(255, 255, 255, 0.1);
-    transform: scale(1.05);
+    background-color: var(--primary-color);
+    transform: scale(var(--hover-scale));
+    outline: 2px solid var(--focus-outline-color);
+    outline-offset: 4px;
 }
 
 /* Main Content */
 main {
-    max-width: 1200px;
-    margin: 20px auto;
+    max-width: 1100px;
+    margin: 30px auto;
     padding: 0 20px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 30px;
 }
 
 /* Grid Layout for Sections */
 section {
     background-color: var(--section-bg-color);
-    padding: 20px;
+    padding: 25px;
     border-radius: var(--border-radius);
-    box-shadow: 0 4px 8px var(--shadow-color);
+    box-shadow: 0 4px 12px var(--shadow-color);
     transition: box-shadow var(--transition-speed), transform var(--transition-speed);
     display: grid;
     grid-template-columns: 1fr;
@@ -121,22 +128,23 @@ section {
 }
 
 section:hover {
-    box-shadow: 0 8px 16px var(--shadow-color);
-    transform: translateY(-4px);
+    box-shadow: 0 8px 20px var(--shadow-color);
+    transform: translateY(-5px);
 }
 
 section h2 {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     color: var(--primary-color);
     font-weight: var(--header-font-weight);
-    font-size: 2em;
-    border-bottom: 2px solid var(--primary-color);
-    padding-bottom: 5px;
+    font-size: 2.2em;
+    border-bottom: 3px solid var(--primary-color);
+    padding-bottom: 10px;
 }
 
 /* Lists */
 section ul {
     list-style: none;
+    padding-left: 20px; /* Indentation for better readability */
 }
 
 section ul li {
@@ -150,39 +158,50 @@ section ul li a {
     display: flex;
     align-items: center;
     transition: color var(--transition-speed), transform var(--transition-speed);
+    position: relative;
 }
 
-section ul li a i {
+section ul li a::before {
+    content: '→';
     margin-right: 12px;
     color: var(--primary-color);
-    font-size: 1.4em;
+    font-size: 1.5em;
+    transition: transform var(--transition-speed);
+}
+
+section ul li a:hover::before,
+section ul li a:focus::before {
+    transform: translateX(8px);
 }
 
 section ul li a:hover,
 section ul li a:focus {
     color: var(--primary-color);
-    transform: translateX(8px);
+    transform: translateX(5px);
+    outline: 2px dashed var(--focus-outline-color);
+    outline-offset: 4px;
 }
 
 /* Footer */
 footer {
     background-color: var(--primary-light);
-    color: #fff;
+    color: #ffffff;
     text-align: center;
-    padding: 20px 0;
-    margin-top: 20px;
+    padding: 25px 0;
+    margin-top: 30px;
     border-top: 3px solid var(--primary-color);
     box-shadow: 0 -2px 6px var(--shadow-color);
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
 }
 
 /* Responsive Design */
 @media (max-width: 1024px) {
     header h1 {
-        font-size: 2.2em;
+        font-size: 2.4em;
     }
 
     nav ul li {
-        margin: 0 10px;
+        margin: 0 15px;
     }
 }
 
@@ -192,24 +211,24 @@ footer {
     }
 
     nav ul li {
-        margin: 5px 0;
+        margin: 10px 0;
     }
 
     main {
-        padding: 0 10px;
+        padding: 0 15px;
     }
 
     section {
-        grid-template-columns: 1fr; /* Stack items vertically on smaller screens */
+        grid-template-columns: 1fr;
     }
 }
 
 @media (max-width: 480px) {
     header h1 {
-        font-size: 1.6em;
+        font-size: 1.8em;
     }
 
     section {
-        padding: 15px;
-    }
+        padding: 20px;
+    }
 }
